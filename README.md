@@ -12,6 +12,17 @@ Based on Shodruky's mandelbrot example
 
 https://github.com/parallella/parallella-examples/tree/master/mandelbrot
 
+## How to build and run
+
+    $ make
+
+Go to framebuffer mode(CTRL + ALT + F2)
+
+    $ ./run.sh
+
+Will render animation of aobench. 
+After execution, you can go back to GUI by CTRL + ALT + F7
+
 ## Note
 
 -O3 option doesn't work(seems causing stack overrun).

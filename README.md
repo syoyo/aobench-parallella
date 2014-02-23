@@ -2,6 +2,12 @@
 
 aobench on Parallella.
 
+![aobench](https://github.com/syoyo/aobench_parallella/blob/master/img/aobench_parallella.png?raw=true)
+
+Youtube
+
+http://www.youtube.com/watch?v=_t4p4Is0Z3E
+
 Based on Shodruky's mandelbrot example
 
 https://github.com/parallella/parallella-examples/tree/master/mandelbrot

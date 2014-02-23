@@ -2,7 +2,7 @@
 
 aobench on Parallella.
 
-![aobench](https://github.com/syoyo/aobench_parallella/blob/master/img/aobench_parallella.png?raw=true)
+![aobench](https://github.com/syoyo/aobench-parallella/blob/master/img/aobench_parallella.png?raw=true)
 
 Youtube
 

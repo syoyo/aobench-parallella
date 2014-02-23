@@ -245,7 +245,7 @@ void ambient_occlusion(vec *col, const Isect *isect) {
   int i, j;
   int ntheta = NAO_SAMPLES;
   int nphi = NAO_SAMPLES;
-  float eps = 0.0001;
+  float eps = 0.0001f;
 
   vec p;
 
@@ -364,8 +364,6 @@ int main(void) {
   unsigned int frame = 1;
   unsigned int page = 0;
   volatile msg_block_t *msg = (msg_block_t *)BUF_ADDRESS;
-  float zoom = 5.0f;
-  float zf = 0.97f;
   unsigned int w = WIDTH;
   unsigned int h = HEIGHT;
   unsigned int xoff = 0;
@@ -387,7 +385,6 @@ int main(void) {
     for (y = 0; y < h; y += cores) { // render scanline in parallel
       for (x = 0; x < w; x++) {
 
-#if 1
         float out_col[3] = { 0.0f, 0.0f, 0.0f };
 
         for (v = 0; v < NSUBSAMPLES; v++) {
@@ -420,7 +417,6 @@ int main(void) {
             if (isect.hit) {
               vec col;
               ambient_occlusion(&col, &isect);
-              // col.x = col.y = col.z = 1.0f;
 
               out_col[0] += col.x;
               out_col[1] += col.y;
@@ -435,9 +431,6 @@ int main(void) {
 
         unsigned int rgba = (clamp(out_col[0]) << 16) |
                             (clamp(out_col[1]) << 8) | (clamp(out_col[2]));
-#else
-        unsigned int rgba = (0 << 24) | (127 << 16) | (127 << 8) | 0;
-#endif
 
         *(unsigned int *)(PAGE_OFFSET + page *PAGE_SIZE + x *BPP) = rgba;
       }
@@ -448,9 +441,6 @@ int main(void) {
                  (char *)(PAGE_OFFSET + page * PAGE_SIZE), w * BPP);
       page = page ^ 1;
     }
-    zoom *= zf;
-    zf = (zoom < 0.00002f) ? 1.0417f : zf;
-    zf = (zoom > 5.0f) ? 0.96f : zf;
   }
   return 0;
 }
